@@ -1,0 +1,2 @@
+# Inquiry
+🔍 Scan .NET code
