@@ -71,6 +71,8 @@
 	  <None Remove="Resources\Images\folder_scan_icon.svg" />
 	  <None Remove="Resources\Images\delete_icon.svg" />
 	  <None Remove="Resources\Images\folder_report_icon.svg" />
+	  <None Remove="Resources\Images\folder_remove_icon.svg" />
+	  <None Remove="Resources\Images\folder_invalid_icon.svg" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Models\" />
@@ -119,5 +121,11 @@
 	  <EmbeddedResource Include="Resources\Images\folder_report_icon.svg">
 	    <Generator>ResXFileCodeGenerator</Generator>
 	  </EmbeddedResource>
+	  <EmbeddedResource Include="Resources\Images\folder_remove_icon.svg">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	  </EmbeddedResource>
+	</ItemGroup>
+	<ItemGroup>
+	  <BundleResource Include="Resources\Images\folder_invalid_icon.svg" />
 	</ItemGroup>
 </Project>

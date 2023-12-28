@@ -2,8 +2,14 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Inquiry.Views.Pages.ScanPage"
+             xmlns:vm="clr-namespace:Inquiry.ViewModels"
              Title="Scan">
+
+    <ContentPage.BindingContext>
+        <vm:SettingsViewModel/>
+    </ContentPage.BindingContext>
+
     <VerticalStackLayout>
-        
+
     </VerticalStackLayout>
 </ContentPage>
