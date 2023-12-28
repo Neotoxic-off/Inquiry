@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Inquiry.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Inquiry"
+    xmlns:pages="clr-namespace:Inquiry.Views.Pages">
+
+    <TabBar>
+        <Tab Title="Project" Icon="folder_icon.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:ProjectPage}"/>
+        </Tab>
+
+        <Tab Title="Scan" Icon="folder_scan_icon.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:ScanPage}"/>
+        </Tab>
+
+        <Tab Title="Report" Icon="folder_report_icon.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:ReportPage}"/>
+        </Tab>
+
+        <Tab Title="Settings" Icon="settings_icon.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:SettingsPage}"/>
+        </Tab>
+    </TabBar>
+</Shell>
