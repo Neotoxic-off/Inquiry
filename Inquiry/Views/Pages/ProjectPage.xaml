@@ -28,7 +28,15 @@
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid Padding="10">
-                                        <Label Text="{Binding Path}" />
+                                        <HorizontalStackLayout
+                                            Spacing="25"
+                                            VerticalOptions="Center">
+                                            <ImageButton
+                                                MaximumHeightRequest="20"
+                                                MaximumWidthRequest="20" 
+                                                Source="delete_icon.png"/>
+                                            <Label Text="{Binding Path}" />
+                                        </HorizontalStackLayout>                  
                                     </Grid>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
@@ -47,14 +55,11 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="4*"/>
                     </Grid.ColumnDefinitions>
 
                     <ImageButton MaximumHeightRequest="30" MaximumWidthRequest="30" Grid.Column="0" Source="folder_add_icon.png" Command="{Binding AddFolderCommand}"/>
                     <ImageButton MaximumHeightRequest="30" MaximumWidthRequest="30" Grid.Column="1" Source="folder_remove_icon.png"/>
-                    <ImageButton MaximumHeightRequest="30" MaximumWidthRequest="30" Grid.Column="2" Source="file_add_icon.png" Command="{Binding AddFileCommand}"/>
-                    <ImageButton MaximumHeightRequest="30" MaximumWidthRequest="30" Grid.Column="3" Source="file_remove_icon.png"/>
                 </Grid>
             </Border>
 

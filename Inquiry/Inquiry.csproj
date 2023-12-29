@@ -50,6 +50,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
 
@@ -75,6 +76,7 @@
 	  <None Remove="Resources\Images\folder_remove_icon.svg" />
 	  <None Remove="Resources\Images\folder_invalid_icon.svg" />
 	  <None Remove="Models\IO\" />
+	  <None Remove="Interfaces\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Models\" />
@@ -83,6 +85,7 @@
 	  <Folder Include="Views\Pages\" />
 	  <Folder Include="Resources\Images\" />
 	  <Folder Include="Models\IO\" />
+	  <Folder Include="Interfaces\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <EmbeddedResource Include="Resources\Images\folder_icon.svg">

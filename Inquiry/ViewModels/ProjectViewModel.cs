@@ -3,7 +3,9 @@ using System.Collections.ObjectModel;
 using System.Reflection;
 using Inquiry.Models;
 using Inquiry.Models.IO;
-using static Inquiry.Models.BaseModel;
+using Inquiry.Interfaces;
+using System.Threading;
+using CommunityToolkit.Maui.Storage;
 
 namespace Inquiry.ViewModels
 {
@@ -17,9 +19,8 @@ namespace Inquiry.ViewModels
 		}
 
 		public AsyncDelegateCommand AddFolderCommand { get; set; }
-		public AsyncDelegateCommand AddFileCommand { get; set; }
 
-		public ProjectViewModel()
+        public ProjectViewModel()
 		{
 			LoadModels();
             LoadCommands();
@@ -36,32 +37,29 @@ namespace Inquiry.ViewModels
 		private void LoadCommands()
 		{
 			AddFolderCommand = new AsyncDelegateCommand(AddFolder);
-			AddFileCommand = new AsyncDelegateCommand(AddFile);
         }
 
 		private async Task AddFolder(object data)
 		{
-            
-        }
+			CancellationToken cancellationToken = new CancellationToken();
+			FolderPickerResult folder = await FolderPicker.Default.PickAsync(cancellationToken);
+			string[] files = null;
 
-        private async Task AddFile(object data)
-        {
-            IEnumerable<FileResult> result = await FilePicker.PickMultipleAsync();
-
-            if (result != null)
-            {
-				foreach (FileResult file in result)
+			if (folder != null)
+			{
+				files = Directory.GetFiles(folder.Folder.Path, "*.cs", SearchOption.AllDirectories);
+                foreach (string file in files)
 				{
-                    AddFileToModel(file.FullPath);
+                    AddFileToModel(file);
                 }
-            }
+			}
         }
 
 		private void AddFileToModel(string path)
 		{
             FileModel file = null;
 
-            if (IsSelected(path) == false && IsValid(path) == true)
+            if (IsSelected(path) == false)
             {
                 file = new FileModel()
                 {
@@ -72,21 +70,6 @@ namespace Inquiry.ViewModels
                 projectModel.Files.Add(file);
             }
         }
-
-		private bool IsValid(string path)
-		{
-			string file = Path.GetFileName(path);
-			string extension = Path.GetExtension(file);
-			Console.WriteLine(path);
-			Console.WriteLine(file);
-			Console.WriteLine(extension);
-            List<string> filters = new List<string>()
-			{
-				".cs"
-			};
-
-            return (filters.Contains(extension));
-		}
 
 		private bool IsSelected(string path)
 		{

@@ -46,6 +46,38 @@ namespace Inquiry.ViewModels
 
             public void InvokeCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
+
+        public class AsyncDelegateCommand : ICommand
+        {
+            private readonly Func<object, Task> _executeAction;
+            private bool _canExecute;
+
+            public AsyncDelegateCommand(Func<object, Task> executeAction)
+            {
+                _executeAction = executeAction;
+                _canExecute = true;
+            }
+
+            public async void Execute(object parameter) => await ExecuteAsync(parameter);
+
+            public bool CanExecute(object parameter) => _canExecute == true;
+
+            public event EventHandler CanExecuteChanged;
+
+            public void InvokeCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+
+            private async Task ExecuteAsync(object parameter)
+            {
+                _canExecute = false;
+
+                if (_executeAction != null)
+                {
+                    await _executeAction(parameter);
+                }
+
+                _canExecute = true;
+            }
+        }
     }
 }
 
