@@ -28,7 +28,7 @@ namespace Inquiry.ViewModels
 
         private void LoadAuthor()
         {
-            settingsModel.Author = "Neotoxic-off";
+            settingsModel.Author = "neo";
         }
     }
 }

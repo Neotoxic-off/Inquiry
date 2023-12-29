@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Inquiry.Models
+namespace Inquiry.Models.IO
 {
 	public class FileModel : BaseModel
 	{
@@ -10,8 +10,8 @@ namespace Inquiry.Models
 			set { SetProperty(ref _path, value); }
 		}
 
-        private List<string> _content;
-        public List<string> Content
+        private string _content;
+        public string Content
         {
             get { return _content; }
             set { SetProperty(ref _content, value); }

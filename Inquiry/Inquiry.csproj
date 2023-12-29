@@ -8,6 +8,7 @@
 		<OutputType>Exe</OutputType>
 		<RootNamespace>Inquiry</RootNamespace>
 		<UseMaui>true</UseMaui>
+		<UseMauiEssentials>true</UseMauiEssentials>
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
 
@@ -73,6 +74,7 @@
 	  <None Remove="Resources\Images\folder_report_icon.svg" />
 	  <None Remove="Resources\Images\folder_remove_icon.svg" />
 	  <None Remove="Resources\Images\folder_invalid_icon.svg" />
+	  <None Remove="Models\IO\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Models\" />
@@ -80,6 +82,7 @@
 	  <Folder Include="Views\" />
 	  <Folder Include="Views\Pages\" />
 	  <Folder Include="Resources\Images\" />
+	  <Folder Include="Models\IO\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <EmbeddedResource Include="Resources\Images\folder_icon.svg">

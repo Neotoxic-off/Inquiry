@@ -46,6 +46,40 @@ namespace Inquiry.Models
 
             public void InvokeCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
+
+        public class AsyncDelegateCommand : ICommand
+        {
+            private readonly Func<object, Task> _executeAction;
+            private readonly Func<object, Task<bool>> _canExecuteAction;
+
+            public AsyncDelegateCommand(Func<object, Task> executeAction, Func<object, Task<bool>> canExecuteAction)
+            {
+                _executeAction = executeAction;
+                _canExecuteAction = canExecuteAction;
+            }
+
+            public AsyncDelegateCommand(Func<object, Task> executeAction)
+            {
+                _executeAction = executeAction;
+            }
+
+            public async void Execute(object parameter) => await ExecuteAsync(parameter);
+
+            public bool CanExecute(object parameter) => _canExecuteAction == null || _canExecuteAction(parameter).Result;
+
+            public event EventHandler CanExecuteChanged;
+
+            public void InvokeCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+
+            private async Task ExecuteAsync(object parameter)
+            {
+                if (_executeAction != null)
+                {
+                    await _executeAction(parameter);
+                }
+            }
+        }
+
     }
 }
 

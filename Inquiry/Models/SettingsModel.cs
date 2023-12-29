@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace Inquiry.Models
 {
 	public class SettingsModel: BaseModel

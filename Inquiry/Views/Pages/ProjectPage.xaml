@@ -16,14 +16,24 @@
             VerticalOptions="Center">
 
             <Border HorizontalOptions="FillAndExpand"
+                    MinimumHeightRequest="300"
                     StrokeThickness="1"
                     StrokeShape="RoundRectangle 10,10,10,10"
                     Padding="25"
                     Background="{StaticResource Gray900Brush}">
 
                 <Grid>
-
-
+                    <VerticalStackLayout>
+                        <CollectionView ItemsSource="{Binding projectModel.Files}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Padding="10">
+                                        <Label Text="{Binding Path}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
                 </Grid>
             </Border>
 
@@ -41,9 +51,9 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <ImageButton MaximumHeightRequest="30" MaximumWidthRequest="30" Grid.Column="0" Source="folder_add_icon.png"/>
+                    <ImageButton MaximumHeightRequest="30" MaximumWidthRequest="30" Grid.Column="0" Source="folder_add_icon.png" Command="{Binding AddFolderCommand}"/>
                     <ImageButton MaximumHeightRequest="30" MaximumWidthRequest="30" Grid.Column="1" Source="folder_remove_icon.png"/>
-                    <ImageButton MaximumHeightRequest="30" MaximumWidthRequest="30" Grid.Column="2" Source="file_add_icon.png"/>
+                    <ImageButton MaximumHeightRequest="30" MaximumWidthRequest="30" Grid.Column="2" Source="file_add_icon.png" Command="{Binding AddFileCommand}"/>
                     <ImageButton MaximumHeightRequest="30" MaximumWidthRequest="30" Grid.Column="3" Source="file_remove_icon.png"/>
                 </Grid>
             </Border>
@@ -51,4 +61,3 @@
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
-
