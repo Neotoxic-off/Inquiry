@@ -7,8 +7,19 @@
     <ContentPage.BindingContext>
         <vm:SettingsViewModel/>
     </ContentPage.BindingContext>
+    
+    <Grid Padding="25" RowSpacing="25">
+        <ScrollView>
+            <Border HorizontalOptions="FillAndExpand"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 10,10,10,10"
+                    Padding="25"
+                    Background="{StaticResource Gray900Brush}">
 
-    <VerticalStackLayout>
-
-    </VerticalStackLayout>
+                <Grid>
+                    
+                </Grid>
+            </Border>
+        </ScrollView>
+    </Grid>
 </ContentPage>

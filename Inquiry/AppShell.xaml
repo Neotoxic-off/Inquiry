@@ -4,7 +4,9 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Inquiry"
-    xmlns:pages="clr-namespace:Inquiry.Views.Pages">
+    xmlns:pages="clr-namespace:Inquiry.Views.Pages"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.NavBarIsVisible="False">
 
     <TabBar>
         <Tab Title="Project" Icon="folder_icon.png">

@@ -2,13 +2,14 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Inquiry.Views.Pages.ProjectPage"
+             x:Name="PProjectPage"
              xmlns:vm="clr-namespace:Inquiry.ViewModels">
 
     <ContentPage.BindingContext>
         <vm:ProjectViewModel/>
     </ContentPage.BindingContext>
 
-    <Grid Padding="25, 0" RowSpacing="25">
+    <Grid Padding="25" RowSpacing="25">
         <Grid.RowDefinitions>
             <RowDefinition Height="4*"/>
             <RowDefinition Height="75"/>
@@ -34,8 +35,10 @@
                                             <ImageButton
                                                 MaximumHeightRequest="20"
                                                 MaximumWidthRequest="20" 
-                                                Source="delete_icon.png"/>
-                                            <Label Text="{Binding Path}" />
+                                                Source="delete_icon.png"
+                                                Command="{Binding Path=RemoveFileCommand, Source=RelativeBindingContext}"
+                                                CommandParameter="{Binding Path}"/>
+                                            <Label Text="{Binding Path}"/>
                                         </HorizontalStackLayout>                  
                                     </Grid>
                                 </DataTemplate>
@@ -68,7 +71,7 @@
                 <ImageButton MaximumHeightRequest="30" MaximumWidthRequest="30" Grid.Column="1" Source="folder_remove_icon.png"/>
 
                 <ProgressBar Grid.Column="3" Progress="0.5" />
-                <Label Margin="10,0,10,0" Grid.Column="2" Text="logs"/>
+                <Label Margin="10,0,10,0" Grid.Column="2" Text="{Binding Logs}"/>
 
                 <ImageButton MaximumHeightRequest="30" MaximumWidthRequest="30" Grid.Column="4" Source="start_icon.png" Command="{Binding StartScanCommand}"/>
                 <ImageButton MaximumHeightRequest="30" MaximumWidthRequest="30" Grid.Column="5" Source="pause_icon.png" Command="{Binding PauseScanCommand}"/>

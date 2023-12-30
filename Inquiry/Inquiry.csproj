@@ -52,6 +52,7 @@
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -80,6 +81,7 @@
 	  <None Remove="Resources\Images\stop_icon.svg" />
 	  <None Remove="Resources\Images\start_icon.svg" />
 	  <None Remove="Resources\Images\pause_icon.svg" />
+	  <None Remove="Scan\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Models\" />
@@ -89,6 +91,7 @@
 	  <Folder Include="Resources\Images\" />
 	  <Folder Include="Models\IO\" />
 	  <Folder Include="Interfaces\" />
+	  <Folder Include="Scan\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <EmbeddedResource Include="Resources\Images\folder_icon.svg">

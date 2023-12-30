@@ -18,7 +18,15 @@ namespace Inquiry.ViewModels
 			set { SetProperty(ref _projectModel, value); }
 		}
 
+		private string _logs;
+		public string Logs
+		{
+			get { return _logs; }
+			set { SetProperty(ref _logs, value); }
+		}
+
 		public AsyncDelegateCommand AddFolderCommand { get; set; }
+		public DelegateCommand RemoveFileCommand { get; set; }
 
         public ProjectViewModel()
 		{
@@ -26,33 +34,62 @@ namespace Inquiry.ViewModels
             LoadCommands();
         }
 
+		private void Log(string message)
+		{
+			Logs = message;
+		}
+
 		private void LoadModels()
 		{
+            Log("loading models");
+
             projectModel = new ProjectModel()
             {
                 Files = new ObservableCollection<Models.IO.FileModel>()
             };
+
+            Log("models loaded");
         }
 
 		private void LoadCommands()
 		{
-			AddFolderCommand = new AsyncDelegateCommand(AddFolder);
+            Log("loading commands");
+
+            AddFolderCommand = new AsyncDelegateCommand(AddFolder);
+			RemoveFileCommand = new DelegateCommand(RemoveFile);
+
+            Log("commands loaded");
         }
+
+		private void RemoveFile(object data)
+		{
+            foreach (FileModel file in projectModel.Files)
+			{
+				if (file.Path == $"{data}")
+				{
+					projectModel.Files.Remove(file);
+                }
+			}
+		}
 
 		private async Task AddFolder(object data)
 		{
-			CancellationToken cancellationToken = new CancellationToken();
+            Log("selecting folder project");
+            CancellationToken cancellationToken = new CancellationToken();
 			FolderPickerResult folder = await FolderPicker.Default.PickAsync(cancellationToken);
 			string[] files = null;
 
-			if (folder != null)
+            if (folder != null)
 			{
-				files = Directory.GetFiles(folder.Folder.Path, "*.cs", SearchOption.AllDirectories);
+				Log($"folder selected '{folder.Folder.Path}'");
+                files = Directory.GetFiles(folder.Folder.Path, "*.cs", SearchOption.AllDirectories);
+                Log("searching files");
                 foreach (string file in files)
 				{
                     AddFileToModel(file);
                 }
-			}
+                Log($"{projectModel.Files.Count} files added");
+            }
         }
 
 		private void AddFileToModel(string path)
