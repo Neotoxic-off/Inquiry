@@ -11,45 +11,12 @@
 
     <Grid Padding="25" RowSpacing="25">
         <Grid.RowDefinitions>
-            <RowDefinition Height="4*"/>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="75"/>
         </Grid.RowDefinitions>
 
-        <ScrollView Grid.Row="0">
-            <Border 
-                    HorizontalOptions="FillAndExpand"
-                    StrokeThickness="1"
-                    StrokeShape="RoundRectangle 10,10,10,10"
-                    Padding="25"
-                    Background="{StaticResource Gray900Brush}">
-
-                <Grid>
-                    <VerticalStackLayout>
-                        <CollectionView ItemsSource="{Binding projectModel.Files}">
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Padding="10">
-                                        <HorizontalStackLayout
-                                            Spacing="25"
-                                            VerticalOptions="Center">
-                                            <ImageButton
-                                                MaximumHeightRequest="20"
-                                                MaximumWidthRequest="20" 
-                                                Source="delete_icon.png"
-                                                Command="{Binding Path=RemoveFileCommand, Source=RelativeBindingContext}"
-                                                CommandParameter="{Binding Path}"/>
-                                            <Label Text="{Binding Path}"/>
-                                        </HorizontalStackLayout>                  
-                                    </Grid>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
-                    </VerticalStackLayout>
-                </Grid>
-            </Border>
-        </ScrollView>
-
-        <Border Grid.Row="1"
+        <Border Grid.Row="0"
                 HorizontalOptions="FillAndExpand"
                 StrokeThickness="1"
                 StrokeShape="RoundRectangle 10,10,10,10"
@@ -60,22 +27,94 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50"/>
                     <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="75"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="50"/>
-                    <ColumnDefinition Width="50"/>
-                    <ColumnDefinition Width="50"/>
                 </Grid.ColumnDefinitions>
 
                 <ImageButton MaximumHeightRequest="30" MaximumWidthRequest="30" Grid.Column="0" Source="folder_add_icon.png" Command="{Binding AddFolderCommand}"/>
                 <ImageButton MaximumHeightRequest="30" MaximumWidthRequest="30" Grid.Column="1" Source="folder_remove_icon.png"/>
 
-                <ProgressBar Grid.Column="3" Progress="0.5" />
-                <Label Margin="10,0,10,0" Grid.Column="2" Text="{Binding Logs}"/>
+                <Label Margin="10,0,10,0" Grid.Column="2" Text="Files:"/>
+                <Label Margin="10,0,10,0" Grid.Column="3" Text="{Binding projectModel.Files.Count}"/>
+                <Label Margin="10,0,10,0" Grid.Column="5" Text="{Binding Logs}"/>
+            </Grid>
+        </Border>
 
-                <ImageButton MaximumHeightRequest="30" MaximumWidthRequest="30" Grid.Column="4" Source="start_icon.png" Command="{Binding StartScanCommand}"/>
-                <ImageButton MaximumHeightRequest="30" MaximumWidthRequest="30" Grid.Column="5" Source="pause_icon.png" Command="{Binding PauseScanCommand}"/>
-                <ImageButton MaximumHeightRequest="30" MaximumWidthRequest="30" Grid.Column="6" Source="stop_icon.png" Command="{Binding StopScanCommand}"/>
+        <Grid Grid.Row="1" ColumnSpacing="25">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0"
+                    HorizontalOptions="FillAndExpand"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 10,10,10,10"
+                    Padding="25"
+                    Background="{StaticResource Gray900Brush}">
+                <ScrollView>
+                    <VerticalStackLayout>
+                        <CollectionView ItemsSource="{Binding projectModel.Files}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <HorizontalStackLayout
+                                        Spacing="10"
+                                        VerticalOptions="Center">
+                                        <ImageButton
+                                            MaximumHeightRequest="20"
+                                            MaximumWidthRequest="20" 
+                                            Source="delete_icon.png"
+                                            Command="{Binding Path=BindingContext.RemoveFileCommand, Source={x:Reference PProjectPage}}"
+                                            CommandParameter="{Binding Path}"/>
+                                        <Label Text="{Binding Path}" VerticalOptions="Center"/>
+                                    </HorizontalStackLayout>                  
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
+                </ScrollView>
+            </Border>
+            
+            <Border Grid.Column="1"
+                    HorizontalOptions="FillAndExpand"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 10,10,10,10"
+                    Padding="25"
+                    Background="{StaticResource Gray900Brush}">
+                
+                <ScrollView>
+                    <VerticalStackLayout>
+                        <CollectionView ItemsSource="{Binding scanModel}">
+                            
+                        </CollectionView>
+                    </VerticalStackLayout>
+                </ScrollView>
+            </Border>
+            
+        </Grid>
+
+        <Border Grid.Row="2"
+                HorizontalOptions="FillAndExpand"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 10,10,10,10"
+                Padding="25"    
+                Background="{StaticResource Gray900Brush}">
+ 
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+                
+                <ProgressBar Grid.Column="0" Progress="0.5" />
+
+                <ImageButton MaximumHeightRequest="30" MaximumWidthRequest="30" Grid.Column="1" Source="start_icon.png" Command="{Binding StartScanCommand}"/>
+                <ImageButton MaximumHeightRequest="30" MaximumWidthRequest="30" Grid.Column="2" Source="pause_icon.png" Command="{Binding PauseScanCommand}"/>
+                <ImageButton MaximumHeightRequest="30" MaximumWidthRequest="30" Grid.Column="3" Source="stop_icon.png" Command="{Binding StopScanCommand}"/>
             </Grid>
         </Border>
     </Grid>

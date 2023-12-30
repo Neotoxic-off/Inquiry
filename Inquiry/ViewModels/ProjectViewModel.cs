@@ -18,7 +18,14 @@ namespace Inquiry.ViewModels
 			set { SetProperty(ref _projectModel, value); }
 		}
 
-		private string _logs;
+        private ScanModel _scanModel;
+        public ScanModel scanModel
+        {
+            get { return _scanModel; }
+            set { SetProperty(ref _scanModel, value); }
+        }
+
+        private string _logs;
 		public string Logs
 		{
 			get { return _logs; }
@@ -45,8 +52,13 @@ namespace Inquiry.ViewModels
 
             projectModel = new ProjectModel()
             {
-                Files = new ObservableCollection<Models.IO.FileModel>()
+                Files = new ObservableCollection<FileModel>()
             };
+
+			scanModel = new ScanModel()
+			{
+				Steps = new ObservableCollection<ScanStepModel>()
+			};
 
             Log("models loaded");
         }
