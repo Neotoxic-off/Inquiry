@@ -82,6 +82,10 @@
 	  <None Remove="Resources\Images\start_icon.svg" />
 	  <None Remove="Resources\Images\pause_icon.svg" />
 	  <None Remove="Scan\" />
+	  <None Remove="Resources\Images\state_error.svg" />
+	  <None Remove="Resources\Images\state_queue.svg" />
+	  <None Remove="Resources\Images\state_success.svg" />
+	  <None Remove="Resources\Images\state_running.svg" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Models\" />
@@ -143,6 +147,18 @@
 	    <Generator>ResXFileCodeGenerator</Generator>
 	  </EmbeddedResource>
 	  <EmbeddedResource Include="Resources\Images\pause_icon.svg">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	  </EmbeddedResource>
+	  <EmbeddedResource Include="Resources\Images\state_error.svg">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	  </EmbeddedResource>
+	  <EmbeddedResource Include="Resources\Images\state_queue.svg">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	  </EmbeddedResource>
+	  <EmbeddedResource Include="Resources\Images\state_success.svg">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	  </EmbeddedResource>
+	  <EmbeddedResource Include="Resources\Images\state_running.svg">
 	    <Generator>ResXFileCodeGenerator</Generator>
 	  </EmbeddedResource>
 	</ItemGroup>

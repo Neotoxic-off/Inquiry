@@ -18,11 +18,11 @@ namespace Inquiry.ViewModels
 			set { SetProperty(ref _projectModel, value); }
 		}
 
-        private ScanModel _scanModel;
-        public ScanModel scanModel
+        private Scan.Core _scanCore;
+        public Scan.Core scanCore
         {
-            get { return _scanModel; }
-            set { SetProperty(ref _scanModel, value); }
+            get { return _scanCore; }
+            set { SetProperty(ref _scanCore, value); }
         }
 
         private string _logs;
@@ -55,10 +55,7 @@ namespace Inquiry.ViewModels
                 Files = new ObservableCollection<FileModel>()
             };
 
-			scanModel = new ScanModel()
-			{
-				Steps = new ObservableCollection<ScanStepModel>()
-			};
+			scanCore = new Scan.Core();
 
             Log("models loaded");
         }

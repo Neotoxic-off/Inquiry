@@ -86,8 +86,20 @@
                 
                 <ScrollView>
                     <VerticalStackLayout>
-                        <CollectionView ItemsSource="{Binding scanModel}">
-                            
+                        <CollectionView ItemsSource="{Binding scanCore.scanModel.Steps}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image Grid.Column="0" MaximumHeightRequest="20" Source="{Binding Icon}" VerticalOptions="Center"/>
+                                        <Label Grid.Column="1" Text="{Binding Name}" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
                         </CollectionView>
                     </VerticalStackLayout>
                 </ScrollView>
